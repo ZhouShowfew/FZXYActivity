@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/basic_money_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_16dp"
+        android:src="@mipmap/icon_minus" />
+
+
+    <View
+        android:layout_width="@dimen/line_width_1dp"
+        android:layout_height="30dp"
+        android:background="@color/colorPrimary" />
+
+    <com.SkyEyesLive.LiiiFE.materialdesign.views.MaterialEditText
+        android:id="@+id/edit_title"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:text="1.0"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_size_subtitle"
+        app:met_hideUnderline="true"
+        android:singleLine="true"/>
+    <View
+        android:layout_width="@dimen/line_width_1dp"
+        android:layout_height="30dp"
+        android:background="@color/colorPrimary" />
+    <ImageView
+        android:id="@+id/basic_money_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_16dp"
+        android:src="@mipmap/icon_more"
+        android:contentDescription="@string/A_picture"/>
+    <!--<View-->
+    <!--android:layout_width="@dimen/line_width_1dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@color/primary"-->
+    <!--android:layout_marginLeft="@dimen/space_8dp"/>-->
+</LinearLayout>

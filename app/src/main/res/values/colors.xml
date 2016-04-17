@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#3F51B5</color>
+    <color name="colorRealAccent">#FF4081</color>
+
+    <!--常用颜色-->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="hui_gray">#cccccc</color>
+    <color name="hui_gray_bg">#E3E3E3</color>
+    <color name="hui_deep_gray">#80878A</color>
+    <color name="black_translucent">#90000000</color>
+    <color name="hui_translucent">#902A3233</color>
+    <color name="black_txt_bg">#d842413F</color>
+
+    <!--自定义控件MaterialDesign EditText-->
+    <color name="cyan_500">#00bcd4</color>
+    <color name="md_btn_selected">#33969696</color>
+    <color name="md_btn_selected_dark">#40CBCBCB</color>
+    <color name="md_divider_black">#10000000</color>
+    <color name="md_divider_white">#10FFFFFF</color>
+    <color name="md_material_blue_600">#1E88E5</color>
+    <color name="md_material_blue_800">#1565C0</color>
+    <color name="md_edittext_error">#DD2C00</color>
+    <color name="text_like_counter">#2b5a83</color>
+
+    <color name="red">#ff0000</color><!--红色 -->
+    <color name="transparent">#0000</color><!-- 透明 -->
+    <color name="thumbColor">#66aaaaaa</color>
+</resources>

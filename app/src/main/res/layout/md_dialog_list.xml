@@ -1,0 +1,56 @@
+<com.SkyEyesLive.LiiiFE.materialdesign.utils.MDRootLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <include layout="@layout/md_stub_titleframe_lesspadding" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/contentScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/space_24dp"
+                android:paddingTop="@dimen/space_8dp"
+                android:paddingRight="@dimen/space_24dp"
+                android:paddingBottom="@dimen/space_8dp"
+                android:textSize="@dimen/txt_size_subtitle"
+                tools:text="Content" />
+
+        </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/contentListViewFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/contentListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbarStyle="outsideOverlay"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/space_8dp"
+                android:paddingBottom="@dimen/space_8dp" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/md_stub_actionbuttons" />
+
+</com.SkyEyesLive.LiiiFE.materialdesign.utils.MDRootLayout>
