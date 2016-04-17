@@ -11,6 +11,7 @@
     <ScrollView
         android:id="@+id/scroll_activity_detail"
         android:layout_below="@+id/activity_detail_include_toolbar"
+        android:layout_above="@+id/btn_task_join"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -75,6 +76,13 @@
                     android:layout_toEndOf="@+id/tv_title"
                     />
             </LinearLayout>
+            <View
+                android:id="@+id/view_bottom"
+                android:layout_below="@+id/ll_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_width_1dp"
+                android:background="@color/hui_gray"
+                />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,6 +92,7 @@
                     android:id="@+id/iv_headerPic"
                     android:layout_width="@dimen/icon_48dp"
                     android:layout_height="@dimen/icon_48dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginLeft="@dimen/space_8dp"
                     android:src="@mipmap/circleheader"
                     android:layout_below="@+id/iv_activity_pic"
@@ -138,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_8dp"
                 android:layout_marginBottom="@dimen/space_8dp"
+                android:elevation="4dp"
                 >
                 <TextView
                     android:id="@+id/tv_title"
@@ -162,7 +172,27 @@
                     android:textAlignment="center"
                     />
             </com.example.steven.fzxyactivity.materialdesign.views.Card>
+            <TextView
+                android:id="@+id/tv_taskfdes_moretask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/prompt_s"
+                android:layout_marginTop="@dimen/prompt_s"
+                android:background="@drawable/font_bg"
+                android:gravity="center"
+                android:text="20人已经报名"
+                android:textColor="@color/colorRealAccent"
+                android:textSize="@dimen/txt_size_14sp"/>
         </LinearLayout>
     </ScrollView>
-
+    <Button
+        android:id="@+id/btn_task_join"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="报名"
+        android:textColor="@color/white"
+        android:textSize="@dimen/txt_size_18sp"/>
 </RelativeLayout>

@@ -7,13 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.RelativeLayout;
 
 import com.example.steven.fzxyactivity.R;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DiscoverFragment.OnFragmentInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link DiscoverFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -23,6 +30,10 @@ public class DiscoverFragment extends android.app.Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    @Bind(R.id.ll_discover_title)
+    RelativeLayout llDiscoverTitle;
+    @Bind(R.id.webView)
+    WebView webView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,7 +76,23 @@ public class DiscoverFragment extends android.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_discover, container, false);
+        View view = inflater.inflate(R.layout.fragment_discover, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        WebSettings webSettings = webView.getSettings();
+        //设置WebView属性，能够执行Javascript脚本
+        webSettings.setJavaScriptEnabled(true);
+        //设置可以访问文件
+        webSettings.setAllowFileAccess(true);
+        //设置支持缩放
+        webSettings.setBuiltInZoomControls(true);
+        webView.loadUrl("http://www.172xiaoyuan.com/m/");
+        webView.setWebViewClient(new WebViewClient());
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -90,6 +117,12 @@ public class DiscoverFragment extends android.app.Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     /**

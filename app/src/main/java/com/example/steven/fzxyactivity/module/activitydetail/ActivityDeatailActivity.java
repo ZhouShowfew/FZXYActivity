@@ -5,15 +5,18 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.steven.fzxyactivity.R;
+import com.example.steven.fzxyactivity.common.util.ToastUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ActivityDeatailActivity extends AppCompatActivity {
 
@@ -45,6 +48,10 @@ public class ActivityDeatailActivity extends AppCompatActivity {
     LinearLayout llActivityDetail;
     @Bind(R.id.scroll_activity_detail)
     ScrollView scrollActivityDetail;
+    @Bind(R.id.tv_taskfdes_moretask)
+    TextView tvTaskfdesMoretask;
+    @Bind(R.id.btn_task_join)
+    Button btnTaskJoin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,5 +69,10 @@ public class ActivityDeatailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @OnClick(R.id.btn_task_join)
+    public void setBtnTaskJoin(){
+        ToastUtil.toast("报名中");
     }
 }

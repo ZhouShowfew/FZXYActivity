@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="school">
+        <item>防灾科技学院</item>
+        <item>华北科技学院</item>
+        <item>燕京理工学院</item>
+        <item>中央美术学院</item>
+        <item>交通干部管理学院</item>
+        <item>民政干部管理学院</item>
+    </string-array>
+</resources>

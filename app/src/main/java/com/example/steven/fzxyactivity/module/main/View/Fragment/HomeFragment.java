@@ -2,6 +2,7 @@ package com.example.steven.fzxyactivity.module.main.View.Fragment;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,10 +17,12 @@ import com.example.steven.fzxyactivity.App;
 import com.example.steven.fzxyactivity.R;
 import com.example.steven.fzxyactivity.common.util.SpUtils;
 import com.example.steven.fzxyactivity.module.main.View.Fragment.adapter.HomeRcyAdapter;
+import com.example.steven.fzxyactivity.module.newactivity.NewActivityActivity;
 import com.melnykov.fab.FloatingActionButton;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class HomeFragment extends Fragment {
@@ -91,6 +94,10 @@ public class HomeFragment extends Fragment {
         includeRecycleView.setAdapter(adapter);
     }
 
+    @OnClick(R.id.fab)
+    public void setFab(){
+        startActivity(new Intent(getActivity(), NewActivityActivity.class));
+    }
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

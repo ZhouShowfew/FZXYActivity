@@ -106,6 +106,7 @@ public class MeFragment extends android.app.Fragment {
         SpUtils.clear(App.getApp());
         startActivity(new Intent(getActivity(),LoginActivity.class));
         getActivity().finish();
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

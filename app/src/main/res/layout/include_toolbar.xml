@@ -12,6 +12,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         android:elevation="6dp"
+        app:navigationIcon="@mipmap/abc_ic_ab_back_mtrl_am_alpha"
         app:titleTextColor="@android:color/white"
+        app:subtitleTextColor="@android:color/white"
         />
 </android.support.design.widget.AppBarLayout>
