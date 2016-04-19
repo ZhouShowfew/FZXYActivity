@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.steven.fzxyactivity.R;
+import com.example.steven.fzxyactivity.materialdesign.views.PEWImageView;
 import com.example.steven.fzxyactivity.module.activitydetail.ActivityDeatailActivity;
 
 import butterknife.Bind;
@@ -54,7 +55,7 @@ public class HomeRcyAdapter extends RecyclerView.Adapter {
 
     class AcitivityItemViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.iv_activity_pic)
-        ImageView ivActivityPic;
+        PEWImageView ivActivityPic;
         @Bind(R.id.tv_procesing)
         TextView tvProcesing;
         @Bind(R.id.iv_headerPic)

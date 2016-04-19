@@ -76,7 +76,7 @@ public class NewActivityActivity extends AppCompatActivity {
         ButtonRectangle btnCamera= (ButtonRectangle) view.findViewById(R.id.btn_Camera);
         ButtonRectangle btnPic= (ButtonRectangle) view.findViewById(R.id.btn_Pic);
         alert = new MaterialDialog(this).setTitle(
-                "更换头像").setContentView(view).setCanceledOnTouchOutside(true);
+                "选择封面").setContentView(view).setCanceledOnTouchOutside(true);
         alert.show();
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
