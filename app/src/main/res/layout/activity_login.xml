@@ -35,23 +35,19 @@
             android:layout_height="wrap_content"
             android:hint="密码"
             />
-        <android.support.v7.widget.AppCompatButton
+        <com.example.steven.fzxyactivity.materialdesign.views.ButtonRectangle
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="60dp"
             android:text="登录"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
             />
-        <android.support.v7.widget.AppCompatButton
+        <com.example.steven.fzxyactivity.materialdesign.views.ButtonRectangle
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:text="注册"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
             />
     </LinearLayout>
 </LinearLayout>

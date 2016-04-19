@@ -5,4 +5,7 @@ package com.example.steven.fzxyactivity.Constant;
  */
 public class Constants {
     public static final String ServerUrl="http://211.71.233.52:9988/xyq/rest/";
+    public static final int CAMERA_WITH_DATA=2001;
+    public static final int PHOTO_REQUEST=2002;
+    public static final int PHOTO_CLIP=2003;
 }

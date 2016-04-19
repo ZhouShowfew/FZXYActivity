@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.steven.fzxyactivity.R;
 import com.example.steven.fzxyactivity.common.util.ToastUtil;
+import com.example.steven.fzxyactivity.materialdesign.views.ButtonRectangle;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Bind(R.id.et_password)
     AppCompatEditText etPassword;
     @Bind(R.id.btn_register)
-    AppCompatButton btnRegister;
+    ButtonRectangle btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
