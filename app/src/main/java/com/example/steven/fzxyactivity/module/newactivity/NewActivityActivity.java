@@ -20,14 +20,21 @@ import android.widget.SpinnerAdapter;
 import com.bumptech.glide.Glide;
 import com.example.steven.fzxyactivity.Constant.Constants;
 import com.example.steven.fzxyactivity.R;
+import com.example.steven.fzxyactivity.common.util.LogUtil;
+import com.example.steven.fzxyactivity.common.util.OkUtils;
 import com.example.steven.fzxyactivity.common.util.ToastUtil;
 import com.example.steven.fzxyactivity.common.util.glide.GlideCircleTransform;
 import com.example.steven.fzxyactivity.materialdesign.views.ButtonRectangle;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.drakeet.materialdialog.MaterialDialog;
+import okhttp3.Call;
 
 public class NewActivityActivity extends AppCompatActivity {
 
@@ -66,9 +73,32 @@ public class NewActivityActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_register)
     public void setBtnRegister(){
+
         ToastUtil.toast("发布中，请稍等");
         finish();
     }
+
+    private void newTaskByServer() {
+        String url = Constants.ServerUrl + "user/reg";
+        Map<String, String> map = new HashMap<>();
+        map.put("activitytitle", etTitle.getText().toString());
+        map.put("createdtime", String.valueOf(System.currentTimeMillis()));
+        map.put("activitytag", etTag.getText().toString());
+        map.put("collegename", spSchool.getSelectedItem().toString());
+       // map.put("activitydesc", );
+        OkUtils.post(url, map, new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.log(response);
+            }
+        });
+    }
+
     MaterialDialog alert;
     @OnClick(R.id.iv_pic)
     public void setIvPic(){

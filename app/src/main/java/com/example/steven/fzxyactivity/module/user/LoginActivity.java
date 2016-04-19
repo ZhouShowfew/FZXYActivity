@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.steven.fzxyactivity.App;
 import com.example.steven.fzxyactivity.Constant.Constants;
 import com.example.steven.fzxyactivity.R;
+import com.example.steven.fzxyactivity.common.util.LogUtil;
 import com.example.steven.fzxyactivity.common.util.OkUtils;
 import com.example.steven.fzxyactivity.common.util.SpUtils;
 import com.example.steven.fzxyactivity.common.util.ToastUtil;
@@ -55,11 +56,11 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ToastUtil.toast("登录");
+                loginByServer();
                 SpUtils.putString(App.getApp(), "userId", "1");
                 SpUtils.putString(App.getApp(), "userName", "周大侠");
                 startActivity(new Intent(LoginActivity.this, BottomMainActivity.class));
                 finish();
-                //loginByServer(et_account.getText().toString(),et_password.getText().toString());
             }
         });
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -70,11 +71,11 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private void loginByServer(String account, String password) {
+    private void loginByServer() {
         String url = Constants.ServerUrl + "user/login";
         Map<String, String> map = new HashMap<>();
-        map.put("uid", account);
-        map.put("pwd", password);
+        map.put("uid", etAccunt.getText().toString());
+        map.put("pwd", etPassword.toString());
         OkUtils.post(url, map, new StringCallback() {
             @Override
             public void onError(Call call, Exception e) {
@@ -83,7 +84,7 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-
+                LogUtil.log(response);
             }
         });
     }
