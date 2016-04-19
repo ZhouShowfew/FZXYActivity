@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +14,6 @@ import android.widget.TextView;
 import com.example.steven.fzxyactivity.App;
 import com.example.steven.fzxyactivity.R;
 import com.example.steven.fzxyactivity.common.util.SpUtils;
-import com.example.steven.fzxyactivity.materialdesign.utils.DialogAction;
-import com.example.steven.fzxyactivity.materialdesign.views.MaterialDialog;
 import com.example.steven.fzxyactivity.module.user.LoginActivity;
 
 import butterknife.Bind;
@@ -54,6 +51,8 @@ public class MeFragment extends android.app.Fragment {
     TextView tvSet;
     @Bind(R.id.tv_exit)
     TextView tvExit;
+    @Bind(R.id.tv_modify_user)
+    TextView tvModifyUser;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -102,9 +101,15 @@ public class MeFragment extends android.app.Fragment {
     }
 
     @OnClick(R.id.tv_exit)
-    public void setTvExit(){
+    public void setTvExit() {
         SpUtils.clear(App.getApp());
-        startActivity(new Intent(getActivity(),LoginActivity.class));
+        startActivity(new Intent(getActivity(), LoginActivity.class));
+        getActivity().finish();
+
+    }
+    @OnClick(R.id.tv_modify_user)
+    public void setTvModifyUser() {
+        startActivity(new Intent(getActivity(), LoginActivity.class));
         getActivity().finish();
 
     }
@@ -144,7 +149,7 @@ public class MeFragment extends android.app.Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
+     * <p>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.

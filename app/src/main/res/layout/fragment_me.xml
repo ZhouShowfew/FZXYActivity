@@ -24,6 +24,19 @@
                 android:gravity="center"
                 android:layout_centerInParent="true"
                 />
+            <TextView
+                android:id="@+id/tv_modify_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="修改个人资料"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/space_8dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                />
         </RelativeLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -71,10 +84,19 @@
             android:id="@+id/tv_my_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:text="我的活动"
             android:textSize="20sp" />
+        <View
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="@dimen/space_16dp"
+            android:layout_marginRight="@dimen/space_16dp"
+            android:layout_height="@dimen/line_width_1dp"
+            android:layout_below="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            />
         <TextView
             android:id="@+id/tv_my_interest_activity"
             android:layout_width="match_parent"
@@ -83,6 +105,15 @@
             android:layout_marginLeft="16dp"
             android:text="我感兴趣的活动"
             android:textSize="20sp" />
+        <View
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="@dimen/space_16dp"
+            android:layout_marginRight="@dimen/space_16dp"
+            android:layout_height="@dimen/line_width_1dp"
+            android:layout_below="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            />
         <TextView
             android:id="@+id/tv_shareToFriend"
             android:layout_width="match_parent"
@@ -91,6 +122,15 @@
             android:layout_marginLeft="16dp"
             android:text="推荐给好友"
             android:textSize="20sp" />
+        <View
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="@dimen/space_16dp"
+            android:layout_marginRight="@dimen/space_16dp"
+            android:layout_height="@dimen/line_width_1dp"
+            android:layout_below="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            />
         <TextView
             android:id="@+id/tv_about"
             android:layout_width="match_parent"
@@ -99,6 +139,15 @@
             android:layout_marginLeft="16dp"
             android:text="关于"
             android:textSize="20sp" />
+        <View
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="@dimen/space_16dp"
+            android:layout_marginRight="@dimen/space_16dp"
+            android:layout_height="@dimen/line_width_1dp"
+            android:layout_below="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            />
         <TextView
             android:id="@+id/tv_set"
             android:layout_width="match_parent"
@@ -107,6 +156,15 @@
             android:layout_marginLeft="16dp"
             android:text="设置"
             android:textSize="20sp" />
+        <View
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="@dimen/space_16dp"
+            android:layout_marginRight="@dimen/space_16dp"
+            android:layout_height="@dimen/line_width_1dp"
+            android:layout_below="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            />
         <TextView
             android:id="@+id/tv_exit"
             android:layout_width="match_parent"

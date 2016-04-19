@@ -13,8 +13,8 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:label="@string/app_name"
         android:icon="@mipmap/activity_icon"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -44,10 +44,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.activitydetail.ActivityDeatailActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.newactivity.NewActivityActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".module.user.ModifyActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
     </application>
