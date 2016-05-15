@@ -24,6 +24,7 @@
         android:text="进行中"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:visibility="invisible"
         android:layout_alignBottom="@+id/iv_activity_pic"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
@@ -46,24 +47,28 @@
         android:layout_marginTop="@dimen/space_8dp"
         android:text="活动标题"
         android:textSize="20sp"
-
-        android:layout_toEndOf="@+id/tv_procesing" />
+        android:layout_toEndOf="@+id/tv_procesing"
+        android:layout_marginBottom="@dimen/space_8dp"
+        />
     <TextView
         android:id="@+id/tv_hot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="热度：11"
+        android:text="浏览量：11"
         android:textSize="14sp"
-        android:layout_alignBottom="@+id/iv_headerPic"
-        android:layout_alignStart="@+id/tv_title" />
+        android:layout_below="@id/tv_title"
+        android:layout_alignStart="@+id/tv_title"
+        android:layout_marginBottom="@dimen/space_8dp"
+        />
     <TextView
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="开始时间：04.16"
+        android:text="开始时间：2016-04-16"
         android:textSize="14sp"
-        android:layout_alignTop="@+id/tv_hot"
-        android:layout_toEndOf="@+id/tv_title"
-        android:layout_marginBottom="8dp"
+        android:layout_toRightOf="@+id/tv_hot"
+        android:layout_below="@id/tv_title"
+        android:layout_marginLeft="@dimen/space_8dp"
+        android:layout_marginBottom="@dimen/space_8dp"
         />
 </RelativeLayout>

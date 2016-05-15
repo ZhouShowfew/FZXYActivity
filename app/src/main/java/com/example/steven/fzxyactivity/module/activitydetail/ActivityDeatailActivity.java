@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,17 +12,31 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.steven.fzxyactivity.App;
+import com.example.steven.fzxyactivity.Constant.Constants;
 import com.example.steven.fzxyactivity.R;
+import com.example.steven.fzxyactivity.common.util.OkUtils;
+import com.example.steven.fzxyactivity.common.util.SpUtils;
 import com.example.steven.fzxyactivity.common.util.ToastUtil;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
 
 public class ActivityDeatailActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.tv_activity_title)
+    TextView tvAcitivityTitle;
     @Bind(R.id.iv_pic_activity_detail)
     ImageView ivPicActivityDetail;
     @Bind(R.id.tv_procesing)
@@ -68,11 +83,57 @@ public class ActivityDeatailActivity extends AppCompatActivity {
                 finish();
             }
         });
+        try {
+            JSONObject object=new JSONObject(getIntent().getStringExtra("jsonObject"));
+            initValue(object);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void initValue(JSONObject ob) throws JSONException {
+        if (!TextUtils.isEmpty(ob.getString("activityTitle")))
+            tvAcitivityTitle.setText(ob.getString("activityTitle"));
+        if (!TextUtils.isEmpty(ob.getString("startTime")))
+            tvTimeStart.setText("开始时间："+ob.getString("startTime").substring(0,10));
+        if (!TextUtils.isEmpty(ob.getString("endTime")))
+            tvTimeEnd.setText("结束时间:"+ob.getString("endTime").substring(0,10));
+        if (!TextUtils.isEmpty(ob.getString("createdTime")))
+            tvCreateTime.setText("创建时间:"+ob.getString("createdTime").substring(0,10));
+        if (!TextUtils.isEmpty(ob.getString("clickCount")))
+            tvActivityHot.setText("浏览量:"+ob.getString("clickCount"));
+        if (!TextUtils.isEmpty(ob.getString("collegeId")))
+            tvHostSchool.setText("来自 "+ob.getString("collegeId"));
+        if (!TextUtils.isEmpty(ob.getString("userName")))
+            tvHostName.setText(ob.getString("userName"));
+        if (!TextUtils.isEmpty(ob.getString("activityDesc")))
+            tvActivityDesc.setText(ob.getString("activityDesc"));
 
     }
 
     @OnClick(R.id.btn_task_join)
-    public void setBtnTaskJoin(){
-        ToastUtil.toast("报名中");
+    public void setBtnTaskJoin() {
+        String url= Constants.ServerUrl+"app/addActivityApp";
+        Map<String,String> map=new HashMap<>();
+        try {
+            map.put("activityId",new JSONObject(getIntent().getStringExtra("jsonObject")).getString("activityId"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        map.put("userId", SpUtils.getString(App.getApp(),"userId"));
+        map.put("userName", SpUtils.getString(App.getApp(),"userName"));
+        map.put("activityMemberStatus","0");
+        OkUtils.post(url, map, new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+
+            }
+        });
     }
 }

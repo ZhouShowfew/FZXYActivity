@@ -18,6 +18,9 @@ import com.example.steven.fzxyactivity.materialdesign.views.ButtonRectangle;
 import com.example.steven.fzxyactivity.module.main.View.Fragment.Activity.BottomMainActivity;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,9 +70,6 @@ public class RegisterActivity extends AppCompatActivity {
     @OnClick(R.id.btn_register)
     public void setBtnRegister(){
         RegisterByServer();
-        ToastUtil.toast("提交注册");
-        startActivity(new Intent(RegisterActivity.this, BottomMainActivity.class));
-        finish();
     }
 
     private void RegisterByServer() {
@@ -88,7 +88,20 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.log(response);
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    ToastUtil.toast(jsonObject.getString("msg"));
+                    if (jsonObject.getString("code").equals("1")){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                finish();
+                            }
+                        });
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

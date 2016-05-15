@@ -14,15 +14,32 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.steven.fzxyactivity.App;
+import com.example.steven.fzxyactivity.Constant.Constants;
 import com.example.steven.fzxyactivity.R;
+import com.example.steven.fzxyactivity.common.util.LogUtil;
+import com.example.steven.fzxyactivity.common.util.OkUtils;
 import com.example.steven.fzxyactivity.common.util.SpUtils;
+import com.example.steven.fzxyactivity.common.util.ToastUtil;
+import com.example.steven.fzxyactivity.module.main.View.Fragment.Activity.BottomMainActivity;
 import com.example.steven.fzxyactivity.module.main.View.Fragment.adapter.HomeRcyAdapter;
 import com.example.steven.fzxyactivity.module.newactivity.NewActivityActivity;
 import com.melnykov.fab.FloatingActionButton;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Response;
 
 
 public class HomeFragment extends Fragment {
@@ -66,8 +83,6 @@ public class HomeFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
-
-
     }
 
     @Override
@@ -79,19 +94,51 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         titleName.setText(SpUtils.getString(App.getApp(),"userName"));
         includeRecycleView.setLayoutManager(mLinearLayoutManager);
         fab.attachToRecyclerView(includeRecycleView);
-        adapter=new HomeRcyAdapter(getActivity());
         includeSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 includeSwipeRefresh.setRefreshing(false);
             }
         });
-        includeRecycleView.setAdapter(adapter);
+
+        String url = Constants.ServerUrl+"activity/findAll";
+        OkUtils.get(url, new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    final JSONArray array=jsonObject.getJSONArray("activity");
+                    if (array.getJSONObject(0).getString("code").equals("1")){
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapter=new HomeRcyAdapter(getActivity(),array);
+                                includeRecycleView.setAdapter(adapter);
+
+                            }
+                        });
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @OnClick(R.id.fab)

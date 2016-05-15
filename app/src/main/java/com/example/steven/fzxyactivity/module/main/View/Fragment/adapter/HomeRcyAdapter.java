@@ -3,6 +3,7 @@ package com.example.steven.fzxyactivity.module.main.View.Fragment.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,10 @@ import android.widget.TextView;
 import com.example.steven.fzxyactivity.R;
 import com.example.steven.fzxyactivity.materialdesign.views.PEWImageView;
 import com.example.steven.fzxyactivity.module.activitydetail.ActivityDeatailActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,10 +29,10 @@ import butterknife.OnClick;
 public class HomeRcyAdapter extends RecyclerView.Adapter {
     private RecyclerView.ViewHolder holder;
     private Context context;
-
-    public HomeRcyAdapter(Context context) {
+    private JSONArray array;
+    public HomeRcyAdapter(Context context, JSONArray array) {
         this.context = context;
-
+        this.array=array;
     }
 
     @Override
@@ -38,19 +43,37 @@ public class HomeRcyAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         AcitivityItemViewHolder viewHolder= (AcitivityItemViewHolder) holder;
+        try {
+            final JSONObject object=array.getJSONObject(position);
+            viewHolder.tvTitle.setText(object.getString("activityTitle"));
+            if (!TextUtils.isEmpty(object.getString("clickCount")))
+            viewHolder.tvHot.setText("浏览量:"+object.getString("clickCount"));
+            if (!TextUtils.isEmpty(object.getString("startTime")))
+            viewHolder.tvTime.setText("开始时间:"+object.getString("startTime").substring(0,10));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         viewHolder.ivActivityPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, ActivityDeatailActivity.class));
+                final JSONObject object;
+                try {
+                    object = array.getJSONObject(position);
+                    Intent intent=new Intent(context, ActivityDeatailActivity.class);
+                    intent.putExtra("jsonObject",object.toString());
+                    context.startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return array.length()-1;
     }
 
     class AcitivityItemViewHolder extends RecyclerView.ViewHolder {
