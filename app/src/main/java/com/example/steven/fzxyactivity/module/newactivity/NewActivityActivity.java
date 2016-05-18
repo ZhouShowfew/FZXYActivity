@@ -18,14 +18,19 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.steven.fzxyactivity.App;
 import com.example.steven.fzxyactivity.Constant.Constants;
 import com.example.steven.fzxyactivity.R;
 import com.example.steven.fzxyactivity.common.util.LogUtil;
 import com.example.steven.fzxyactivity.common.util.OkUtils;
+import com.example.steven.fzxyactivity.common.util.SpUtils;
 import com.example.steven.fzxyactivity.common.util.ToastUtil;
 import com.example.steven.fzxyactivity.common.util.glide.GlideCircleTransform;
 import com.example.steven.fzxyactivity.materialdesign.views.ButtonRectangle;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -73,18 +78,19 @@ public class NewActivityActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_register)
     public void setBtnRegister(){
-
-        ToastUtil.toast("发布中，请稍等");
-        finish();
+        newTaskByServer();
     }
 
     private void newTaskByServer() {
-        String url = Constants.ServerUrl + "user/reg";
+        String url = Constants.ServerUrl + "activity/addActivity";
         Map<String, String> map = new HashMap<>();
-        map.put("activitytitle", etTitle.getText().toString());
-        map.put("createdtime", String.valueOf(System.currentTimeMillis()));
-        map.put("activitytag", etTag.getText().toString());
-        map.put("collegename", spSchool.getSelectedItem().toString());
+        map.put("ActivityTitle", etTitle.getText().toString());
+        map.put("CreatedTime", String.valueOf(System.currentTimeMillis()));
+        map.put("UserId",  SpUtils.getString(App.getApp(),"userId"));
+        map.put("UserName",SpUtils.getString(App.getApp(),"userName"));
+        map.put("ActivityDesc", etDesc.getText().toString());
+        map.put("ActivityTag", etTag.getText().toString());
+        map.put("CollegeName", spSchool.getSelectedItem().toString());
        // map.put("activitydesc", );
         OkUtils.post(url, map, new StringCallback() {
             @Override
@@ -94,7 +100,21 @@ public class NewActivityActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.log(response);
+                //添加失败
+                    try {
+                        JSONObject jsonObject=new JSONObject(response);
+                        ToastUtil.toast(jsonObject.getString("msg"));
+                        if (jsonObject.getString("code").equals("1")){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    finish();
+                                }
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
             }
         });
     }

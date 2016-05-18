@@ -20,17 +20,16 @@ import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by Steven on 2016/4/16.
  * 主页的适配器
  */
-public class HomeRcyAdapter extends RecyclerView.Adapter {
+public class MyActivityAdapter extends RecyclerView.Adapter {
     private RecyclerView.ViewHolder holder;
     private Context context;
     private JSONArray array;
-    public HomeRcyAdapter(Context context, JSONArray array) {
+    public MyActivityAdapter(Context context, JSONArray array) {
         this.context = context;
         this.array=array;
     }
@@ -45,20 +44,6 @@ public class HomeRcyAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         AcitivityItemViewHolder viewHolder= (AcitivityItemViewHolder) holder;
-        viewHolder.ivActivityPic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final JSONObject object;
-                try {
-                    object = array.getJSONObject(position);
-                    Intent intent=new Intent(context, ActivityDeatailActivity.class);
-                    intent.putExtra("jsonObject",object.toString());
-                    context.startActivity(intent);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
         try {
             final JSONObject object=array.getJSONObject(position);
             viewHolder.tvTitle.setText(object.getString("activityTitle"));

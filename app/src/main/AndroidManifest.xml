@@ -50,8 +50,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.user.ModifyActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".module.personcenter.MyActivity"></activity>
     </application>
 
 </manifest>

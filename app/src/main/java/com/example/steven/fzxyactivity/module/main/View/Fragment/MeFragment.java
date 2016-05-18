@@ -56,14 +56,10 @@ public class MeFragment extends android.app.Fragment {
     TextView tvID;
     @Bind(R.id.tv_my_activity)
     TextView tvMyActivity;
-    @Bind(R.id.tv_my_interest_activity)
-    TextView tvMyInterestActivity;
     @Bind(R.id.tv_shareToFriend)
     TextView tvShareToFriend;
     @Bind(R.id.tv_about)
     TextView tvAbout;
-    @Bind(R.id.tv_set)
-    TextView tvSet;
     @Bind(R.id.tv_exit)
     TextView tvExit;
     @Bind(R.id.tv_modify_user)
@@ -120,7 +116,22 @@ public class MeFragment extends android.app.Fragment {
         super.onStart();
         Glide.with(this).load(R.mipmap.circleheader).asBitmap().transform(new GlideCircleTransform(getActivity())).into(ivHeaderPic);//圆形头像
     }
+    @OnClick(R.id.tv_my_activity)
+    public void setTvMyActivity(){
 
+    }
+    @OnClick(R.id.tv_shareToFriend)
+    public void setTvShareToFriend(){
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "快来加入校友圈吧!");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
+    @OnClick(R.id.tv_about)
+    public void setTvAbout(){
+
+    }
     @OnClick(R.id.tv_exit)
     public void setTvExit() {
         final MaterialDialog materialDialog=new MaterialDialog(getActivity());
@@ -141,9 +152,6 @@ public class MeFragment extends android.app.Fragment {
                 })
                 .setCanceledOnTouchOutside(true)
                 .show();
-
-
-
     }
     @OnClick(R.id.tv_modify_user)
     public void setTvModifyUser() {

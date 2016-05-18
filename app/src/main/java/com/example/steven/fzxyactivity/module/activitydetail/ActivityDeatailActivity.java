@@ -20,6 +20,7 @@ import com.example.steven.fzxyactivity.common.util.SpUtils;
 import com.example.steven.fzxyactivity.common.util.ToastUtil;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -96,7 +97,7 @@ public class ActivityDeatailActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(ob.getString("activityTitle")))
             tvAcitivityTitle.setText(ob.getString("activityTitle"));
         if (!TextUtils.isEmpty(ob.getString("startTime")))
-            tvTimeStart.setText("开始时间："+ob.getString("startTime").substring(0,10));
+            tvTimeStart.setText("开始时间:"+ob.getString("startTime").substring(0,10));
         if (!TextUtils.isEmpty(ob.getString("endTime")))
             tvTimeEnd.setText("结束时间:"+ob.getString("endTime").substring(0,10));
         if (!TextUtils.isEmpty(ob.getString("createdTime")))
@@ -127,12 +128,21 @@ public class ActivityDeatailActivity extends AppCompatActivity {
         OkUtils.post(url, map, new StringCallback() {
             @Override
             public void onError(Call call, Exception e) {
-
+                ToastUtil.toast("网络错误! ");
             }
 
             @Override
             public void onResponse(String response) {
-
+                //已报名
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    ToastUtil.toast(jsonObject.getString("msg"));
+                    if (jsonObject.getString("code").equals("1")){
+                        ToastUtil.toast("报名成功!");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

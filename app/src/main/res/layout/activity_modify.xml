@@ -22,34 +22,19 @@
             android:hint="昵称"
             />
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/et_name"
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="您的姓名"
-            />
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/et_phoneNum"
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="手机号"
-            android:inputType="phone"
-            />
-        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/et_email"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="邮箱"
-            android:inputType="textEmailAddress"
+            android:hint="旧密码"
+            android:inputType="textPassword"
             />
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/et_password"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="密码"
+            android:hint="新密码"
             android:inputType="textPassword"
             />
         <com.example.steven.fzxyactivity.materialdesign.views.ButtonRectangle
