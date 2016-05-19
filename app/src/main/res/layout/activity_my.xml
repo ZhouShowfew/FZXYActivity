@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.steven.fzxyactivity.module.personcenter.MyActivity">
-    <include
-        layout="@layout/include_recycleview"
-        />
+    <com.example.steven.fzxyactivity.common.util.customview.QQListview
+        android:id="@+id/listview_qq"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>
