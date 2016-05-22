@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.steven.fzxyactivity.module.personcenter.MyActivity">
+    <include
+        layout="@layout/include_toolbar"
+        />
+    <com.example.steven.fzxyactivity.common.util.customview.XHLoadingView
+        android:id="@+id/lv_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_centerInParent="true">
+    </com.example.steven.fzxyactivity.common.util.customview.XHLoadingView>
     <com.example.steven.fzxyactivity.common.util.customview.QQListview
         android:id="@+id/listview_qq"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</RelativeLayout>
+        android:layout_height="match_parent"
+        />
+</FrameLayout>

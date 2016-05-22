@@ -24,6 +24,7 @@ import com.example.steven.fzxyactivity.common.util.ToastUtil;
 import com.example.steven.fzxyactivity.common.util.glide.GlideCircleTransform;
 import com.example.steven.fzxyactivity.materialdesign.views.Button;
 import com.example.steven.fzxyactivity.materialdesign.views.ButtonRectangle;
+import com.example.steven.fzxyactivity.module.personcenter.MyActivity;
 import com.example.steven.fzxyactivity.module.user.LoginActivity;
 import com.example.steven.fzxyactivity.module.user.ModifyActivity;
 
@@ -114,11 +115,13 @@ public class MeFragment extends android.app.Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        tvName.setText(SpUtils.getString(getActivity(),"userName"));
+        tvID.setText("ID:"+SpUtils.getString(getActivity(),"userId"));
         Glide.with(this).load(R.mipmap.circleheader).asBitmap().transform(new GlideCircleTransform(getActivity())).into(ivHeaderPic);//圆形头像
     }
     @OnClick(R.id.tv_my_activity)
     public void setTvMyActivity(){
-
+        startActivity(new Intent(getActivity(),MyActivity.class));
     }
     @OnClick(R.id.tv_shareToFriend)
     public void setTvShareToFriend(){

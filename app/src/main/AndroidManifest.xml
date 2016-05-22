@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".App"
@@ -20,7 +21,11 @@
         <activity
             android:name=".module.spalsh.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".module.main.View.Fragment.Activity.BottomMainActivity"
@@ -49,14 +54,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.personcenter.MyActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".module.personcenter.EditActivityActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            />
     </application>
 
 </manifest>

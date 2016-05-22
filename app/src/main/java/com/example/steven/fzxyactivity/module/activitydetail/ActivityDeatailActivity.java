@@ -86,30 +86,34 @@ public class ActivityDeatailActivity extends AppCompatActivity {
         });
         try {
             JSONObject object=new JSONObject(getIntent().getStringExtra("jsonObject"));
-            initValue(object);
+            getActivityDetail(object.getString("activityId"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
     }
 
-    private void initValue(JSONObject ob) throws JSONException {
-        if (!TextUtils.isEmpty(ob.getString("activityTitle")))
-            tvAcitivityTitle.setText(ob.getString("activityTitle"));
-        if (!TextUtils.isEmpty(ob.getString("startTime")))
-            tvTimeStart.setText("开始时间:"+ob.getString("startTime").substring(0,10));
-        if (!TextUtils.isEmpty(ob.getString("endTime")))
-            tvTimeEnd.setText("结束时间:"+ob.getString("endTime").substring(0,10));
-        if (!TextUtils.isEmpty(ob.getString("createdTime")))
-            tvCreateTime.setText("创建时间:"+ob.getString("createdTime").substring(0,10));
-        if (!TextUtils.isEmpty(ob.getString("clickCount")))
-            tvActivityHot.setText("浏览量:"+ob.getString("clickCount"));
-        if (!TextUtils.isEmpty(ob.getString("collegeId")))
-            tvHostSchool.setText("来自 "+ob.getString("collegeId"));
-        if (!TextUtils.isEmpty(ob.getString("userName")))
-            tvHostName.setText(ob.getString("userName"));
-        if (!TextUtils.isEmpty(ob.getString("activityDesc")))
-            tvActivityDesc.setText(ob.getString("activityDesc"));
+    private void initValue(JSONObject ob)  {
+        try {
+            if (!TextUtils.isEmpty(ob.getString("activityTitle")))
+                tvAcitivityTitle.setText(ob.getString("activityTitle"));
+            if (!TextUtils.isEmpty(ob.getString("userName")))
+                tvHostName.setText(ob.getString("userName"));
+            if (!TextUtils.isEmpty(ob.getString("activityDesc")))
+                tvActivityDesc.setText(ob.getString("activityDesc"));
+            if (!TextUtils.isEmpty(ob.getString("collegeId")))
+                tvHostSchool.setText("来自 "+ob.getString("collegeId"));
+            if (!TextUtils.isEmpty(ob.getString("clickCount")))
+                tvActivityHot.setText("浏览量:"+ob.getString("clickCount"));
+            if (!TextUtils.isEmpty(ob.getString("startTime")))
+                tvTimeStart.setText("开始时间:"+ob.getString("startTime").substring(0,10));
+            if (!TextUtils.isEmpty(ob.getString("endTime")))
+                tvTimeEnd.setText("结束时间:"+ob.getString("endTime").substring(0,10));
+            if (!TextUtils.isEmpty(ob.getString("createdTime")))
+                tvCreateTime.setText("创建时间:"+ob.getString("createdTime").substring(0,10));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -143,6 +147,35 @@ public class ActivityDeatailActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+    }
+
+    public void getActivityDetail(String id){
+        String url = Constants.ServerUrl+"activity/getactid/"+id;
+        OkUtils.get(url, new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(final String response) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject jsonObject=new JSONObject(response);
+                            ToastUtil.toast("获取活动信息"+jsonObject.getString("msg"));
+                            if (jsonObject.getString("code").equals("1")){
+                                initValue(jsonObject);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
             }
         });
     }

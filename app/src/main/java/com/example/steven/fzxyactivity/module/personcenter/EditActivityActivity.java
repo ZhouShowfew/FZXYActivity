@@ -1,31 +1,27 @@
-package com.example.steven.fzxyactivity.module.newactivity;
+package com.example.steven.fzxyactivity.module.personcenter;
 
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.steven.fzxyactivity.App;
 import com.example.steven.fzxyactivity.Constant.Constants;
 import com.example.steven.fzxyactivity.R;
-import com.example.steven.fzxyactivity.common.util.LogUtil;
 import com.example.steven.fzxyactivity.common.util.OkUtils;
 import com.example.steven.fzxyactivity.common.util.SpUtils;
 import com.example.steven.fzxyactivity.common.util.ToastUtil;
-import com.example.steven.fzxyactivity.common.util.glide.GlideCircleTransform;
 import com.example.steven.fzxyactivity.materialdesign.views.ButtonRectangle;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -41,7 +37,7 @@ import butterknife.OnClick;
 import me.drakeet.materialdialog.MaterialDialog;
 import okhttp3.Call;
 
-public class NewActivityActivity extends AppCompatActivity {
+public class EditActivityActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -53,18 +49,22 @@ public class NewActivityActivity extends AppCompatActivity {
     AppCompatEditText etDesc;
     @Bind(R.id.et_tag)
     AppCompatEditText etTag;
+    @Bind(R.id.cityLabel)
+    TextView cityLabel;
     @Bind(R.id.sp_school)
     Spinner spSchool;
     @Bind(R.id.btn_register)
     ButtonRectangle btnRegister;
+
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
         ButterKnife.bind(this);
-        toolbar.setTitle("发布活动");
-        toolbar.setSubtitle("填写您的活动信息");
+        toolbar.setTitle("修改活动");
+        toolbar.setSubtitle("修改您的活动信息");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -74,25 +74,45 @@ public class NewActivityActivity extends AppCompatActivity {
                 finish();
             }
         });
+        id=getIntent().getStringExtra("activityId");
+        try {
+            JSONObject object=new JSONObject(getIntent().getStringExtra("jsonObject"));
+            init(object);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void init(JSONObject ob) {
+        try {
+            if (!TextUtils.isEmpty(ob.getString("activityTitle")))
+                etTitle.setText(ob.getString("activityTitle"));
+            if (!TextUtils.isEmpty(ob.getString("activityDesc")))
+                etDesc.setText(ob.getString("activityDesc"));
+            if (!TextUtils.isEmpty(ob.getString("activityTag")))
+                etTag.setText(ob.getString("activityTag"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @OnClick(R.id.btn_register)
     public void setBtnRegister(){
-        newTaskByServer();
+        //修改活动
+        editActivity(id);
     }
 
-    private void newTaskByServer() {
-        String url = Constants.ServerUrl + "activity/addActivity";
+    public void editActivity(String id){
+        String url = Constants.ServerUrl + "activity/updateActivity";
         Map<String, String> map = new HashMap<>();
+        map.put("activityId", id);//int
         map.put("ActivityTitle", etTitle.getText().toString());
-        map.put("CreatedTime", String.valueOf(System.currentTimeMillis()));
-        map.put("UserId",  SpUtils.getString(App.getApp(),"userId"));
-        map.put("UserName",SpUtils.getString(App.getApp(),"userName"));
         map.put("ActivityDesc", etDesc.getText().toString());
         map.put("ActivityTag", etTag.getText().toString());
-        map.put("CollegeName", spSchool.getSelectedItem().toString());
+        map.put("CollegeId", spSchool.getSelectedItem().toString());
+        map.put("VisibleRange", "1");//int
         map.put("ActivityPhotourl", "");
-        map.put("VisibleRange", "");
         OkUtils.post(url, map, new StringCallback() {
             @Override
             public void onError(Call call, Exception e) {
@@ -102,20 +122,20 @@ public class NewActivityActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 //添加失败
-                    try {
-                        JSONObject jsonObject=new JSONObject(response);
-                        ToastUtil.toast(jsonObject.getString("msg"));
-                        if (jsonObject.getString("code").equals("1")){
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    finish();
-                                }
-                            });
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    ToastUtil.toast(jsonObject.getString("msg"));
+                    if (jsonObject.getString("code").equals("1")){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                finish();
+                            }
+                        });
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
