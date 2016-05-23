@@ -73,7 +73,7 @@ public class HomeRcyAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return array.length()-1;
+        return array.length();
     }
 
     class AcitivityItemViewHolder extends RecyclerView.ViewHolder {

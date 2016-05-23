@@ -11,6 +11,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -49,12 +50,16 @@ public class EditActivityActivity extends AppCompatActivity {
     AppCompatEditText etDesc;
     @Bind(R.id.et_tag)
     AppCompatEditText etTag;
+    @Bind(R.id.et_add_msg)
+    AppCompatEditText etMsg;
     @Bind(R.id.cityLabel)
     TextView cityLabel;
     @Bind(R.id.sp_school)
     Spinner spSchool;
     @Bind(R.id.btn_register)
     ButtonRectangle btnRegister;
+    @Bind(R.id.btn_add_msg)
+    Button btnAddMsg;
 
     private String id;
 
@@ -74,9 +79,9 @@ public class EditActivityActivity extends AppCompatActivity {
                 finish();
             }
         });
-        id=getIntent().getStringExtra("activityId");
         try {
             JSONObject object=new JSONObject(getIntent().getStringExtra("jsonObject"));
+            id=object.getString("activityId");
             init(object);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -103,16 +108,54 @@ public class EditActivityActivity extends AppCompatActivity {
         editActivity(id);
     }
 
+    @OnClick(R.id.btn_add_msg)
+    public void setBtnAddMsg(){
+        //修改活动
+        AddMsg(id);
+    }
+
+    private void AddMsg(String id) {
+        if (etMsg.getText().toString().equals("")){
+            ToastUtil.toast("没有填消息");
+            return;
+        }
+        String url = Constants.ServerUrl + "ses/addActivitySes";
+        Map<String, String> map = new HashMap<>();
+        map.put("ActivityId", id);//int
+        map.put("UserId", SpUtils.getString(this,"userId"));
+        map.put("UserName", SpUtils.getString(this,"userName"));
+        map.put("Message", etMsg.getText().toString());
+        OkUtils.post(url, map, new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    ToastUtil.toast(jsonObject.getString("msg"));
+                    if (jsonObject.getString("code").equals("1")){
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     public void editActivity(String id){
         String url = Constants.ServerUrl + "activity/updateActivity";
         Map<String, String> map = new HashMap<>();
-        map.put("activityId", id);//int
+        map.put("ActivityId", id);//int
         map.put("ActivityTitle", etTitle.getText().toString());
         map.put("ActivityDesc", etDesc.getText().toString());
         map.put("ActivityTag", etTag.getText().toString());
         map.put("CollegeId", spSchool.getSelectedItem().toString());
         map.put("VisibleRange", "1");//int
-        map.put("ActivityPhotourl", "");
+        map.put("ActivityPhotourl", "hdsajsk");
         OkUtils.post(url, map, new StringCallback() {
             @Override
             public void onError(Call call, Exception e) {

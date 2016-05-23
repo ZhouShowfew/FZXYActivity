@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/space_16dp"
+        android:layout_marginLeft="@dimen/space_16dp"
+        android:text="消息名"
+        />
+    <TextView
+        android:id="@+id/tv_msg_time"
+        android:layout_below="@+id/tv_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/space_8dp"
+        android:layout_marginLeft="@dimen/space_16dp"
+        android:text="2016-10-10 10:10:10"
+        />
+    <TextView
+        android:id="@+id/tv_msg_user"
+        android:layout_below="@+id/tv_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/space_16dp"
+        android:layout_marginRight="@dimen/space_16dp"
+        android:text="周大侠"
+        />
+</RelativeLayout>

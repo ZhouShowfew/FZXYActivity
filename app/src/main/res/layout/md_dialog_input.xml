@@ -1,4 +1,4 @@
-<com.SkyEyesLive.LiiiFE.materialdesign.utils.MDRootLayout xmlns:tools="http://schemas.android.com/tools"
+<com.example.steven.fzxyactivity.materialdesign.utils.MDRootLayout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -67,4 +67,4 @@
 
     <include layout="@layout/md_stub_actionbuttons" />
 
-</com.SkyEyesLive.LiiiFE.materialdesign.utils.MDRootLayout>
+</com.example.steven.fzxyactivity.materialdesign.utils.MDRootLayout>

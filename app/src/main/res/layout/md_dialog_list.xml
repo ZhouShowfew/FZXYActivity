@@ -1,4 +1,4 @@
-<com.SkyEyesLive.LiiiFE.materialdesign.utils.MDRootLayout
+<com.example.steven.fzxyactivity.materialdesign.utils.MDRootLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -53,4 +53,4 @@
 
     <include layout="@layout/md_stub_actionbuttons" />
 
-</com.SkyEyesLive.LiiiFE.materialdesign.utils.MDRootLayout>
+</com.example.steven.fzxyactivity.materialdesign.utils.MDRootLayout>

@@ -418,10 +418,10 @@ public class MaterialDialog extends DialogBase implements
         protected boolean limitIconToDefaultSize;
         protected int maxIconSize = -1;
         protected ListAdapter adapter;
-        protected OnDismissListener dismissListener;
-        protected OnCancelListener cancelListener;
-        protected OnKeyListener keyListener;
-        protected OnShowListener showListener;
+        protected DialogInterface.OnDismissListener dismissListener;
+        protected DialogInterface.OnCancelListener cancelListener;
+        protected DialogInterface.OnKeyListener keyListener;
+        protected DialogInterface.OnShowListener showListener;
         protected boolean forceStacking;
         protected boolean wrapCustomViewInScroll;
         protected int dividerColor;
@@ -1198,22 +1198,22 @@ public class MaterialDialog extends DialogBase implements
             return maxIconSize((int) this.context.getResources().getDimension(maxIconSizeRes));
         }
 
-        public Builder showListener(@NonNull OnShowListener listener) {
+        public Builder showListener(@NonNull DialogInterface.OnShowListener listener) {
             this.showListener = listener;
             return this;
         }
 
-        public Builder dismissListener(@NonNull OnDismissListener listener) {
+        public Builder dismissListener(@NonNull DialogInterface.OnDismissListener listener) {
             this.dismissListener = listener;
             return this;
         }
 
-        public Builder cancelListener(@NonNull OnCancelListener listener) {
+        public Builder cancelListener(@NonNull DialogInterface.OnCancelListener listener) {
             this.cancelListener = listener;
             return this;
         }
 
-        public Builder keyListener(@NonNull OnKeyListener listener) {
+        public Builder keyListener(@NonNull DialogInterface.OnKeyListener listener) {
             this.keyListener = listener;
             return this;
         }

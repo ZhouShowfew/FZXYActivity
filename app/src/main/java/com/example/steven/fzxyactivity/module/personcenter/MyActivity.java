@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import com.example.steven.fzxyactivity.Constant.Constants;
 import com.example.steven.fzxyactivity.Entity.MyActivityEntity;
@@ -20,8 +19,6 @@ import com.example.steven.fzxyactivity.common.util.ToastUtil;
 import com.example.steven.fzxyactivity.common.util.customview.QQListview;
 import com.example.steven.fzxyactivity.common.util.customview.XHLoadingView;
 import com.example.steven.fzxyactivity.module.activitydetail.ActivityDeatailActivity;
-import com.example.steven.fzxyactivity.module.main.View.Fragment.adapter.HomeRcyAdapter;
-import com.example.steven.fzxyactivity.module.main.View.Fragment.adapter.MyActivityAdapter;
 import com.example.steven.fzxyactivity.module.personcenter.adpter.PActivityAdapter;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -30,7 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -91,8 +87,8 @@ public class MyActivity extends AppCompatActivity {
             //加载中
             mLoadingView.setVisibility(View.VISIBLE);
             mLoadingView.setState(LoadingState.STATE_LOADING);
-            //String url = Constants.ServerUrl + "activity/findbyactivityid/" + SpUtils.getString(this, "userId");
-            String url = Constants.ServerUrl + "activity/findbyactivityid/feng";
+            String url = Constants.ServerUrl + "activity/findbyactivityid/" + SpUtils.getString(this, "userId");
+            //String url = Constants.ServerUrl + "activity/findbyactivityid/feng";
             OkUtils.get(url, new StringCallback() {
                 @Override
                 public void onError(Call call, Exception e) {

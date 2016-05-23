@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
@@ -57,6 +58,8 @@ public class NewActivityActivity extends AppCompatActivity {
     Spinner spSchool;
     @Bind(R.id.btn_register)
     ButtonRectangle btnRegister;
+    @Bind(R.id.ll_add_msg)
+    LinearLayout llAddMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ public class NewActivityActivity extends AppCompatActivity {
                 finish();
             }
         });
+        llAddMsg.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.btn_register)
@@ -85,7 +89,8 @@ public class NewActivityActivity extends AppCompatActivity {
         String url = Constants.ServerUrl + "activity/addActivity";
         Map<String, String> map = new HashMap<>();
         map.put("ActivityTitle", etTitle.getText().toString());
-        map.put("CreatedTime", String.valueOf(System.currentTimeMillis()));
+        //String.valueOf(System.currentTimeMillis())
+        map.put("CreatedTime","2016-12-01 12:00:00");
         map.put("UserId",  SpUtils.getString(App.getApp(),"userId"));
         map.put("UserName",SpUtils.getString(App.getApp(),"userName"));
         map.put("ActivityDesc", etDesc.getText().toString());

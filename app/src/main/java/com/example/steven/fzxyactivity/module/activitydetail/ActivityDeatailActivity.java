@@ -122,13 +122,13 @@ public class ActivityDeatailActivity extends AppCompatActivity {
         String url= Constants.ServerUrl+"app/addActivityApp";
         Map<String,String> map=new HashMap<>();
         try {
-            map.put("activityId",new JSONObject(getIntent().getStringExtra("jsonObject")).getString("activityId"));
+            map.put("ActivityId",new JSONObject(getIntent().getStringExtra("jsonObject")).getString("activityId"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        map.put("userId", SpUtils.getString(App.getApp(),"userId"));
-        map.put("userName", SpUtils.getString(App.getApp(),"userName"));
-        map.put("activityMemberStatus","0");
+        map.put("UserId", SpUtils.getString(App.getApp(),"userId"));
+        map.put("UserName", SpUtils.getString(App.getApp(),"userName"));
+        //map.put("activityMemberStatus","0");
         OkUtils.post(url, map, new StringCallback() {
             @Override
             public void onError(Call call, Exception e) {
