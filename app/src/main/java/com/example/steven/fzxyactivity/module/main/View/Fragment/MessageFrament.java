@@ -265,7 +265,7 @@ public class MessageFrament extends android.app.Fragment {
         Map<String, String> map = new HashMap<>();
         map.put("MessageId", id);
         map.put("UserId", SpUtils.getString(getActivity(),"userId"));
-        map.put(" UserName", SpUtils.getString(getActivity(),"userName"));
+        map.put("UserName", SpUtils.getString(getActivity(),"userName"));
         map.put("Message", content);
         OkUtils.post(url, map, new StringCallback() {
             @Override

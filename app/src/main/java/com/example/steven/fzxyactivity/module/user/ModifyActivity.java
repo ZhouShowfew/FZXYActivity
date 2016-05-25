@@ -67,6 +67,7 @@ public class ModifyActivity extends AppCompatActivity {
         String url = Constants.ServerUrl + "user/changePassword";
         Map<String,String> map=new HashMap<>();
         map.put("userId", SpUtils.getString(App.getApp(),"userId"));
+        map.put("UserName", SpUtils.getString(App.getApp(),"userName"));
         map.put("OldUserPwd ", etEmail.getText().toString());
         map.put("NewUserPwd ",etPassword.getText().toString());
         OkUtils.post(url,map,new StringCallback() {

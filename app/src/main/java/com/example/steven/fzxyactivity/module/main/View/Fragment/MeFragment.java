@@ -113,11 +113,16 @@ public class MeFragment extends android.app.Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         tvName.setText(SpUtils.getString(getActivity(),"userName"));
         tvID.setText("ID:"+SpUtils.getString(getActivity(),"userId"));
         Glide.with(this).load(R.mipmap.circleheader).asBitmap().transform(new GlideCircleTransform(getActivity())).into(ivHeaderPic);//圆形头像
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
     @OnClick(R.id.tv_my_activity)
     public void setTvMyActivity(){
